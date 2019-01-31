@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: unbound
+  namespace: unbound
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: unbound
+  template:
+    metadata:
+      labels:
+        app: unbound
+    spec:
+      containers:
+      - name: unbound
+        image: rshep/unbound-arm:latest
+        ports:
+        - name: dns
+          containerPort: 53
+        volumeMounts:
+          - name: config-volume
+            mountPath: /etc/unbound
+      volumes:
+        - name: config-volume
+          configMap:
+            name: unbound-config
