@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: unbound
-        image: rshep/unbound-arm:latest
+        image: rshep/unbound-arm:1.8.3
         ports:
         - name: dns
           containerPort: 53
